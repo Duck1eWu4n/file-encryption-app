@@ -39,14 +39,11 @@ A web-based application that enables users to securely encrypt and decrypt files
 **Home Page**
 ![Home Page](screenshots/home.png)
 
-
 **Encryption Page**
 ![Encryption](screenshots/encrypt.png)
 
 **Decryption Page**
 ![Decryption](screenshots/decrypt.png)
-
-> **Note:** Add your screenshots to the `screenshots/` folder
 
 ## 🛠️ Technologies
 
