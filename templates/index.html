@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Encryption App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 File Encryption App</h1>
+            <p>Mã hóa và bảo vệ file của bạn một cách đơn giản</p>
+        </header>
+
+        <nav>
+            <a href="/" class="active">Trang chủ</a>
+            <a href="/encrypt">Mã hóa</a>
+            <a href="/decrypt">Giải mã</a>
+        </nav>
+
+        <main class="home">
+            <div class="hero">
+                <h2>Bảo vệ dữ liệu của bạn</h2>
+                <p>Ứng dụng mã hóa file đơn giản, an toàn và dễ sử dụng</p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="icon">🔒</div>
+                    <h3>Mã hóa mạnh mẽ</h3>
+                    <p>Sử dụng thuật toán AES-256, tiêu chuẩn mã hóa quân sự</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h3>Nhanh chóng</h3>
+                    <p>Mã hóa file trong vài giây, không giới hạn số lần sử dụng</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🛡️</div>
+                    <h3>An toàn tuyệt đối</h3>
+                    <p>File được xóa ngay sau khi xử lý, không lưu trên server</p>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="/encrypt" class="btn btn-primary">
+                    🔐 Mã hóa file
+                </a>
+                <a href="/decrypt" class="btn btn-secondary">
+                    🔓 Giải mã file
+                </a>
+            </div>
+
+            <div class="instructions">
+                <h3>Hướng dẫn sử dụng</h3>
+                <ol>
+                    <li><strong>Mã hóa:</strong> Chọn file → Nhập password → Tải về file đã mã hóa</li>
+                    <li><strong>Giải mã:</strong> Chọn file đã mã hóa → Nhập đúng password → Tải về file gốc</li>
+                    <li><strong>Lưu ý:</strong> Nhớ password của bạn! Không thể khôi phục nếu quên</li>
+                </ol>
+            </div>
+
+            <div class="supported-files">
+                <h4>Hỗ trợ các loại file:</h4>
+                <div class="file-types">
+                    <span class="badge">📄 TXT</span>
+                    <span class="badge">📕 PDF</span>
+                    <span class="badge">🖼️ JPG/PNG</span>
+                    <span class="badge">📊 DOCX</span>
+                    <span class="badge">📈 XLSX</span>
+                </div>
+                <p class="size-limit">Giới hạn: 10MB / file</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 File Encryption App | Dự án sinh viên</p>
+        </footer>
+    </div>
+</body>
+</html>

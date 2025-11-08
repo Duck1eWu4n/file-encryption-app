@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giải mã File</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 File Encryption App</h1>
+            <p>Mã hóa và bảo vệ file của bạn</p>
+        </header>
+
+        <nav>
+            <a href="/">Trang chủ</a>
+            <a href="/encrypt">Mã hóa</a>
+            <a href="/decrypt" class="active">Giải mã</a>
+        </nav>
+
+        <main>
+            <!-- Hiển thị thông báo -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="messages">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <div class="form-container">
+                <h2>🔓 Giải mã file</h2>
+                <p class="subtitle">Chọn file đã mã hóa và nhập password</p>
+
+                <form method="POST" enctype="multipart/form-data" id="decryptForm">
+                    <div class="form-group">
+                        <label for="file">
+                            <span class="label-text">📁 Chọn file đã mã hóa</span>
+                            <span class="label-hint">File có đuôi .encrypted</span>
+                        </label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" name="file" id="file" required>
+                            <div class="file-upload-display" id="fileDisplay">
+                                <div class="upload-icon">📥</div>
+                                <p>Kéo thả file vào đây hoặc click để chọn</p>
+                                <p class="file-info" id="fileInfo"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="label-text">🔑 Password</span>
+                            <span class="label-hint">Nhập đúng password đã dùng khi mã hóa</span>
+                        </label>
+                        <input type="password" name="password" id="password" 
+                               placeholder="Nhập password" 
+                               required>
+                        <small class="form-hint warning">⚠️ Nếu sai password, file sẽ không thể giải mã</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary btn-full">
+                        🔓 Giải mã file
+                    </button>
+                </form>
+
+                <div class="info-box">
+                    <h4>ℹ️ Lưu ý khi giải mã:</h4>
+                    <ul>
+                        <li>Phải nhập <strong>chính xác</strong> password đã dùng khi mã hóa</li>
+                        <li>File đã mã hóa thường có đuôi <code>.encrypted</code></li>
+                        <li>Sau khi giải mã thành công, file gốc sẽ được tải về</li>
+                        <li>Nếu quên password, <strong>không thể</strong> khôi phục file</li>
+                    </ul>
+                </div>
+
+                <div class="troubleshooting">
+                    <h4>🔧 Gặp vấn đề?</h4>
+                    <details>
+                        <summary>Không giải mã được file</summary>
+                        <p>Kiểm tra:</p>
+                        <ul>
+                            <li>Password có chính xác không?</li>
+                            <li>File có bị hỏng hoặc sửa đổi không?</li>
+                            <li>File có phải được mã hóa bởi app này không?</li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>File tải về bị lỗi</summary>
+                        <p>Có thể do:</p>
+                        <ul>
+                            <li>Password sai → Thử lại với password đúng</li>
+                            <li>File gốc quá lớn → Đợi lâu hơn khi tải</li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 File Encryption App</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mã hóa File</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 File Encryption App</h1>
+            <p>Mã hóa và bảo vệ file của bạn</p>
+        </header>
+
+        <nav>
+            <a href="/">Trang chủ</a>
+            <a href="/encrypt" class="active">Mã hóa</a>
+            <a href="/decrypt">Giải mã</a>
+        </nav>
+
+        <main>
+            <!-- Hiển thị thông báo -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="messages">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <div class="form-container">
+                <h2>🔒 Mã hóa file</h2>
+                <p class="subtitle">Chọn file và tạo password để bảo vệ</p>
+
+                <form method="POST" enctype="multipart/form-data" id="encryptForm">
+                    <div class="form-group">
+                        <label for="file">
+                            <span class="label-text">📁 Chọn file</span>
+                            <span class="label-hint">Tối đa 10MB</span>
+                        </label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" name="file" id="file" required>
+                            <div class="file-upload-display" id="fileDisplay">
+                                <div class="upload-icon">📤</div>
+                                <p>Kéo thả file vào đây hoặc click để chọn</p>
+                                <p class="file-info" id="fileInfo"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="label-text">🔑 Password</span>
+                            <span class="label-hint">Tối thiểu 6 ký tự</span>
+                        </label>
+                        <input type="password" name="password" id="password" 
+                               placeholder="Nhập password mạnh" 
+                               minlength="6" required>
+                        <div class="password-strength" id="passwordStrength"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            <span class="label-text">🔑 Xác nhận password</span>
+                        </label>
+                        <input type="password" id="confirmPassword" 
+                               placeholder="Nhập lại password" 
+                               minlength="6" required>
+                        <small class="form-hint">⚠️ Ghi nhớ password! Không thể khôi phục nếu quên</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        🔐 Mã hóa file
+                    </button>
+                </form>
+
+                <div class="tips">
+                    <h4>💡 Mẹo tạo password mạnh:</h4>
+                    <ul>
+                        <li>Dài ít nhất 8-12 ký tự</li>
+                        <li>Kết hợp chữ hoa, chữ thường, số và ký tự đặc biệt</li>
+                        <li>Không dùng thông tin cá nhân dễ đoán</li>
+                        <li>Ví dụ: <code>MyS3cur3P@ss2024!</code></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 File Encryption App</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
